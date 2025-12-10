@@ -1,24 +1,47 @@
-public class binarySearch {
-    public static int BinarySearch(int numbers[], int key){
-        int start = 0; 
-        int end = numbers.length - 1;
-        int mid = numbers.length/2;
+// public class binarySearch {
+//     public static int BinarySearch(int numbers[], int key){
+//         int start = 0; 
+//         int end = numbers.length - 1;
+//         int mid = numbers.length/2;
+//         while(start <= end){
+//             mid = (start + end)/2; 
+//             if(key == numbers[mid]){
+//                 return mid ;
+//             }else if(key > numbers[mid]){
+//                 start = mid + 1;
+//             }else{
+//                 end = mid - 1;
+//             }
+//         }
+//         return -1;
+//     }
+//     public static void main(String args[]){
+//         int numbers[] = {1,2,3,4,5,6,7,8,9};
+//         int key = 10;
+//         int index = BinarySearch(numbers, key);
+//         System.out.print(key + " is in "+ index +"th index");
+//     }
+// }
+
+public class binarySearch{
+    public static int findKey(int array[], int key){
+        int start = 0;
+        int end = array.length-1;
         while(start <= end){
-            mid = (start + end)/2; 
-            if(key == numbers[mid]){
-                return mid ;
-            }else if(key > numbers[mid]){
+            int mid = (end+start)/2;
+            if(array[mid] == key){
+                return mid;
+            }else if(array[mid] < key){
                 start = mid + 1;
-            }else{
+            }else if(array[mid] > key){
                 end = mid - 1;
             }
         }
         return -1;
     }
     public static void main(String args[]){
-        int numbers[] = {1,2,3,4,5,6,7,8,9};
-        int key = 10;
-        int index = BinarySearch(numbers, key);
-        System.out.print(key + " is in "+ index +"th index");
+        int array[] = {0,1,2,3,4,5,6,7,8,9,10};
+        int key = 11;
+        System.out.print("The key is at pos " + findKey(array,key));
     }
 }
