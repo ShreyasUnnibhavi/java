@@ -29,9 +29,10 @@ public class sorting {
             nums[i] = temp;
         }
     }
+    //nums[] = {3,6,2,1,8,7,4,5,3,1};
     public static void insertionSort(int nums[]){
         for(int i=1; i<nums.length; i++){
-            for(int j=0; j<=i; j++){
+            for(int j=0; j<i; j++){
                 if(nums[i] < nums[j]){
                     int tempo = nums[j];
                     nums[j] = nums[i];
@@ -76,8 +77,8 @@ public class sorting {
         // Arrays.sort(nums,0,3);
         // bubbleSort(nums);
         // selectionSort(nums);
-        // insertionSort(nums);
-        countingSort(nums);
+        insertionSort(nums);
+        // countingSort(nums);
         printArray(nums);
     }
 }
