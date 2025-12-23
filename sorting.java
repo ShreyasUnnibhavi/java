@@ -1,84 +1,72 @@
-// import java.util.*;
-public class sorting {
-    public static void bubbleSort(int nums[]){
-        for(int i=0; i<nums.length-1; i++){
-            for(int j=0; j<nums.length-1-i; j++){
-                //Descending order
-                if(nums[j] < nums[j+1]){
-                    int temp = nums[j];
-                    nums[j] = nums[j+1];
-                    nums[j+1] = temp;
+public class sorting{
+    public static void print(int array[]){
+        for(int i = 0; i < array.length; i++){
+            System.out.print(array[i] + " ");
+        }
+    }
+    public static void bubbleSort(int array[]){              //Ascending order
+        for(int i = 0; i < array.length - 1; i++){
+            for(int j = 0; j < array.length - i - 1; j++){
+                if(array[j] > array[j+1]){
+                    int temp = array[j+1];
+                    array[j+1] = array[j];
+                    array[j] = temp;
                 }
-                //Ascending order
-                // if(nums[j] > nums[j+1]){
-                //     int temp = nums[j];
-                //     nums[j] = nums[j+1];
-                //     nums[j+1] = temp;
-                // }
             }
         }
     }
-    public static void selectionSort(int nums[]){
-        for(int i=0; i<nums.length-1; i++){
+    public static void selectionSort(int array[]){
+        for(int i = 0; i < array.length-1; i++){
             int min = i;
-            for(int j=i+1; j<nums.length; j++){
-                if(nums[i] > nums[j]) min = j;
+            for(int j = i+1; j < array.length; j++){
+                if(array[j] < array[min]){
+                    min = j;
+                }
             }
-            int temp = nums[min];
-            nums[min] = nums[i];
-            nums[i] = temp;
+            int temp = array[i];
+            array[i] = array[min];
+            array[min] = temp;
         }
     }
-    //nums[] = {3,6,2,1,8,7,4,5,3,1};
-    public static void insertionSort(int nums[]){
-        for(int i=1; i<nums.length; i++){
-            for(int j=0; j<i; j++){
-                if(nums[i] < nums[j]){
-                    int tempo = nums[j];
-                    nums[j] = nums[i];
-                    nums[i] = tempo;
+    public static void insertionSort(int array[]){
+        for(int i = 1; i < array.length; i++){
+            for(int j = 0; j < i; j++){
+                if(array[i] < array[j]){
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
                 }
             }
         }
     }
-    public static void countingSort(int nums[]) {
-    // Step 1: Find the largest number
-        int largest = Integer.MIN_VALUE;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] > largest) {
-                largest = nums[i];
+    public static void countingSort(int array[]){
+        int max = Integer.MIN_VALUE;
+        for(int i = 0; i < array.length; i++){
+            if(array[i] > max){
+                max = array[i];
             }
         }
+        int count[] = new int[max+1];
 
-        // Step 2: Create count array
-        int count[] = new int[largest + 1];
-        for (int i = 0; i < nums.length; i++) {
-            count[nums[i]]++;
+        for(int i = 0; i < array.length; i++){
+            count[array[i]]++;
         }
 
-        // Step 3: Rebuild the sorted array
-        int index = 0;
-        for (int i = 0; i < count.length; i++) {
-            while (count[i] > 0) {
-                nums[index] = i;
-                index++;
+        int j = 0;
+        for(int i = 0; i < count.length; i++){
+            while(count[i] > 0){
+                array[j] = i;
                 count[i]--;
+                j++;
             }
         }
     }
-
-    public static void printArray(int nums[]){
-        for(int i=0; i<nums.length; i++){
-            System.out.print(nums[i] + " ");
-        }
-    }
-    public static void main(String args[]){
-        int nums[] = {3,6,2,1,8,7,4,5,3,1};
-        // Arrays.sort(nums,0,3);
-        // bubbleSort(nums);
-        // selectionSort(nums);
-        insertionSort(nums);
-        // countingSort(nums);
-        printArray(nums);
+    public static void main(String[] args){
+        int array[] = {3,6,2,1,8,7,4,5,3,1};
+        // bubbleSort(array);
+        // selectionSort(array);
+        // insertionSort(array);
+        countingSort(array);
+        print(array);
     }
 }
