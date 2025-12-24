@@ -17,13 +17,13 @@ public class spiralMatrix {
 
             //bottom
             for(int j=endCol-1; j>=startCol; j--){
-                if(startCol == endCol){break;}
+                if(startRow == endRow){break;}
                 System.out.print(array[endRow][j] + " ");
             }
 
             //left
             for(int i=endRow-1; i>=startRow+1; i--){
-                if(startRow == endRow){break;}
+                if(startCol == endCol){break;}
                 System.out.print(array[i][startCol] + " ");
             }
             startRow++;
