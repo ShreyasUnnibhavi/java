@@ -1,21 +1,21 @@
-public class toUppercase {
-    public static void convertToUppercase(String text){
-        StringBuilder sb = new StringBuilder("");
-        char ch = Character.toUpperCase(text.charAt(0));
-        sb.append(ch);
-        for(int i=1; i<text.length(); i++){
-            if(text.charAt(i) == ' ' && i < text.length()-1){
-                sb.append(text.charAt(i));
+public class toUppercase{
+    public static void uppercase(String str){
+        StringBuilder str1 = new StringBuilder("");
+        char ch = Character.toUpperCase(str.charAt(0));
+        str1.append(ch);
+        for(int i = 1; i < str.length(); i++){
+            if(str.charAt(i) == ' ' && i < str.length()-1){
+                str1.append(str.charAt(i));
                 i++;
-                sb.append(Character.toUpperCase(text.charAt(i)));
+                str1.append(Character.toUpperCase(str.charAt(i)));
             }else{
-                sb.append(text.charAt(i));
+                str1.append(str.charAt(i));
             }
         }
-        System.out.print(sb);
+        System.out.print(str1);
     }
     public static void main(String args[]){
-        String text = "hi, my name is shreyas ";
-        convertToUppercase(text);
+        String str = "hi, my name is shreyas!  ";
+        uppercase(str);
     }
 }

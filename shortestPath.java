@@ -1,22 +1,21 @@
-public class shortestPath {
-    public static double calculateDistance(String path){
-        int x=0, y=0;
-        for(int i=0; i<path.length(); i++){
-            //east
-            if(path.charAt(i) == 'E'){
-                x++;
-            }else if(path.charAt(i) == 'W'){
-                x--;
-            }else if(path.charAt(i) == 'S'){
-                y--;
-            }else if(path.charAt(i) == 'N'){
-                y++;
-            };
+public class shortestPath{
+    public static int distance(String path){
+        int i = 0, j = 0;
+        for(int k = 0; k < path.length(); k++){
+            int step = path.charAt(k);
+            switch(step){
+                case 'E': i++; break;
+                case 'W': i--; break;
+                case 'N': j++; break;
+                case 'S': j--; break;
+                default: System.out.print("invalid path");
+            }
         }
-        return Math.sqrt((x*x) + (y*y));
+        int d = (int)Math.sqrt(Math.pow((i-0),2) + Math.pow((j-0),2));
+        return d;
     }
-    public static void main(String args[]){
+    public static void main(String[] args){
         String path = "WNEENESENNN";
-        System.out.println(calculateDistance(path));
+        System.out.print(distance(path));
     }
 }
