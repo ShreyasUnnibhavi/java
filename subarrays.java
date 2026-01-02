@@ -70,9 +70,9 @@ public class subarrays {
         System.out.print("maximum: "+ maxSum);
     }
     public static void main(String args[]){
-        int numbers[] = {-9, -2, -6, -1, -3};
-        printSubarrays(numbers);
+        int numbers[] = {-2,-1,-3,-4,-1,-2,-1,-5,-4};
+        // printSubarrays(numbers);
         // prefixMethod(numbers);
-        // kadenes(numbers);
+        kadenes(numbers);
     }
 }

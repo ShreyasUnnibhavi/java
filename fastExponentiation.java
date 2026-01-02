@@ -1,16 +1,14 @@
-public class fastExponentiation {
-    public static void compute(int n, int i){
-        int ans = 1;
-        while(i>0){
-            if((i & 1) != 0){
-                ans = n * ans ;
-            }
-            n = n * n;
-            i = i >> 1;
-        }
-        System.out.print(ans);
-    }
+public class fastExponentiation{
     public static void main(String args[]){
-        compute(5,3);
+        int a = 3, n = 5;
+        int ans = 1;
+        while(n > 0){
+            if((n & 1) == 1){
+                ans = ans * a;
+            }
+            a = a * a;
+            n = n >> 1;
+        }
+        System.out.println(ans);
     }
 }
