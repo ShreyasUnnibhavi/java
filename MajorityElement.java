@@ -1,21 +1,25 @@
 public class MajorityElement {
-    public static int majorityElement(int[] nums) {
-        int count = 1;
-        int maj = nums[0];
-        for(int i = 1; i < nums.length; i++){
-            if(nums[i] == maj){
-                count++;
-            }else{
-                count--;
-                if(count == 0){
-                    maj = nums[i+1];
-                }
-            }
-        }
-        return maj;
+    public static int count(int nums[], int target, int si, int ei){
+        int count = 0;
+        for(int i = si; i <= ei; i++) if(nums[i] == target) count++;
+        return count;
+    }
+    public static int majorityElement(int[] nums, int si, int ei) {
+        if(si == ei) return nums[si];
+
+        int mid = si + (ei - si)/2;
+        int leftMaj = majorityElement(nums, si, mid);
+        int rightMaj = majorityElement(nums, mid + 1, ei);
+        
+        if(leftMaj == rightMaj) return leftMaj;
+
+        int leftCount = count(nums, leftMaj, si, ei);
+        int rightCount = count(nums, rightMaj, si, ei);
+
+        return leftCount > rightCount ? leftCount : rightCount;
     }
     public static void main(String args[]){
-        int nums[] = {2,2,1,1,1,2,2};
-        System.out.println(majorityElement(nums));
+        int nums[] = {2};
+        System.out.println(majorityElement(nums, 0, nums.length-1));
     }
 }
