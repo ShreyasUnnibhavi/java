@@ -16,10 +16,10 @@ public class MajorityElement {
         int leftCount = count(nums, leftMaj, si, ei);
         int rightCount = count(nums, rightMaj, si, ei);
 
-        return leftCount > rightCount ? leftCount : rightCount;
+        return leftCount > rightCount ? leftMaj : rightMaj;
     }
     public static void main(String args[]){
-        int nums[] = {2};
+        int nums[] = {3,4,3};
         System.out.println(majorityElement(nums, 0, nums.length-1));
     }
 }
