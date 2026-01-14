@@ -27,27 +27,35 @@ public class NQueens {
             System.out.println();
         }
     }
-    public static void nQueens(char chessBoard[][], int row){
+    public static boolean nQueens(char chessBoard[][], int row){
         if(row == chessBoard.length){
-            printBoard(chessBoard);
-            return;
+            // printBoard(chessBoard);
+            return true;
         }
         for(int j = 0; j < chessBoard.length; j++){
             if(isSafe(chessBoard, row, j)){
                 chessBoard[row][j] = 'Q' ;
-                nQueens(chessBoard, row+1);
+                if(nQueens(chessBoard, row+1)){
+                    return true;
+                }
                 chessBoard[row][j] = '.';
             }
         }
+        return false;
     }
     public static void main(String[] args) {
-        int n = 5;
+        int n = 3;
         char chessBoard[][] = new char[n][n];
         for(int i = 0; i < chessBoard.length; i++){
             for(int j = 0; j < chessBoard.length; j++){
                 chessBoard[i][j] = '.';
             }
         }
-        nQueens(chessBoard, 0);
+        if(nQueens(chessBoard, 0)){
+            System.out.println("Solution is possible");
+            printBoard(chessBoard);
+        }else{
+            System.out.println("There is no solution");
+        }
     }
 }
