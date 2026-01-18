@@ -38,3 +38,4 @@ public class PairSum2 {
         System.out.println(findTarget(list, target));
     }
 }
+
