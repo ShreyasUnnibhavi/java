@@ -1,39 +1,37 @@
-// public class tripletSumZero {
-//     public static void generateTriplets(int numbers[]){
-//         for(int i=0; i<numbers.length; i++){
-//             for(int j=i+1; j<numbers.length; j++){
-//                 for(int k=j+1; k<numbers.length; k++){
-//                     if(numbers[i] + numbers[j] + numbers[k] == 0){
-//                         if(numbers[i] != numbers[j] && numbers[i] != numbers[k] && numbers[j] != numbers[k]){
-//                             System.out.print("[ " + numbers[i] + ", " + numbers[j] + ", "+ numbers[k] + " ]");
-//                         }
-//                     }
-//                 }
-//                 System.out.println();
-//             }
-//         }
-//     }
-//     public static void main(String args[]){
-//         int numbers[] = {-1, 0, 1, 2, -1, -4};
-//         generateTriplets(numbers);
-//     }
-// }
+import java.util.*;
+class Solution{
+    public List<List<Integer>> generateTriplets(int nums[]){
+        List<List<Integer>> list = new ArrayList<>();
+        Arrays.sort(nums);
+        for(int i = 0; i < nums.length-2; i++){
+            if(i > 0 && nums[i] == nums[i - 1]) continue;
+            int target = -nums[i];
+            int left = i + 1;
+            int right = nums.length - 1 ;
+            while(left < right){
+                int sum = nums[left] + nums[right];
+                if(sum == target){
+                    list.add(Arrays.asList(nums[i], nums[left], nums[right]));
 
-public class tripletSumZero{
-    public static void generateTriplets(int nums[]){
-        int n = nums.length;
-        for(int i = 0; i < n; i++){
-            for(int j = i+1; j < n; j++){
-                for(int k = j+1; k < n; k++){
-                    if((nums[i] + nums[j] + nums[k] == 0) && nums[i] != nums[j] && nums[j] != nums[k] && nums[i] != nums[k]){
-                        System.out.println(nums[i] + " " + nums[j] + " " + nums[k]);
-                    }
-                }
+                    while(left < right && nums[left] == nums[left+1]) left++;
+                    while(left < right && nums[right] == nums[right-1]) right--;
+
+                    left++;
+                    right--;
+                } 
+
+                else if(sum > target) right--;
+                else left++;
             }
         }
+        return list;
     }
     public static void main(String args[]){
+        Solution sol = new Solution();
         int nums[] = {-1, 0, 1, 2, -1, -4};
-        generateTriplets(nums);
+        List<List<Integer>> res = sol.generateTriplets(nums);
+        for(List<Integer> triplet : res){
+            System.out.println(triplet);
+        }
     }
 }
