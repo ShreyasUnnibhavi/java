@@ -13,7 +13,7 @@ class Solution {
                 if(Math.max(current[0], other[0]) <= Math.min(current[1], other[1])){
                     current = new int[]{Math.min(current[0], other[0]) , Math.max(current[1], other[1])};
                     list.remove(i);
-                    i--;
+                    i = -1; //The fix instead of (i--)
                 }
             }
             result.add(current);
@@ -21,7 +21,7 @@ class Solution {
         return result.toArray(new int[list.size()][]);
     }
     public static void main(String[] args) {
-        int intervals[][] = {{2,6},{1,3},{15,18},{8,10}};
+        int intervals[][] = {{2,3},{4,5},{6,7},{8,9},{1,10}};
         Solution sol = new Solution();
         intervals = sol.mergeIntervals(intervals);
         for(int i = 0; i < intervals.length; i++){
