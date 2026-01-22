@@ -1,5 +1,5 @@
 import java.util.*;
-class Solution {
+class QuadrupletSumZero {
     public List<List<Integer>> solve(int nums[], int target){
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
@@ -32,7 +32,7 @@ class Solution {
     public static void main(String[] args) {
         int nums[] = {1,0,-1,0,-2,2};
         int target = 0;
-        Solution sol = new Solution();
+        QuadrupletSumZero sol = new QuadrupletSumZero();
         List<List<Integer>> res = sol.solve(nums, target);
         for(List<Integer> quadruplet : res){
             System.out.println(quadruplet);
