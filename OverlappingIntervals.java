@@ -1,5 +1,5 @@
 import java.util.*;
-class Solution {
+class OverlappingIntervals {
     public int[][] mergeIntervals(int intervals[][]){
         if(intervals.length <= 1) return intervals;
         List<int[]> list = new ArrayList<>(Arrays.asList(intervals));
@@ -22,7 +22,7 @@ class Solution {
     }
     public static void main(String[] args) {
         int intervals[][] = {{2,3},{4,5},{6,7},{8,9},{1,10}};
-        Solution sol = new Solution();
+        OverlappingIntervals sol = new OverlappingIntervals();
         intervals = sol.mergeIntervals(intervals);
         for(int i = 0; i < intervals.length; i++){
             for(int j = 0; j < 2; j++){
