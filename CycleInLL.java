@@ -234,20 +234,21 @@ public class CycleInLL {
                 break;
             }
         }
-        if(flag){
-            Node prev;
-            while(fast != null){
-                slow = slow.next;
-                prev = fast;
+        if(!flag) return; 
+
+        if(slow == fast){   //corner case: if the cycle start from head
+            while(fast.next != slow){
                 fast = fast.next;
-                if(slow == fast){
-                    prev.next = null;
-                    return ;
-                }
             }
-        }else{
+            fast.next = null;
             return;
         }
+
+        while(fast.next != slow.next){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        fast.next = null;
     }
 
     public static void main(String[] args) {
@@ -262,7 +263,7 @@ public class CycleInLL {
         cycleList.addEnd(2);
         cycleList.addEnd(2);
         cycleList.addEnd(1000);
-        tail.next = head.next.next.next.next.next;
+        tail.next = head;
         if(cycleList.checkForCycle()){
             cycleList.removeCycle();
             cycleList.print();
