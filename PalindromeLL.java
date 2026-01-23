@@ -1,4 +1,4 @@
-class LinkedList {
+class PalindromeLL {
     public static class Node{
         int data;
         Node next;
@@ -246,11 +246,11 @@ class LinkedList {
     }
 
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
+        PalindromeLL ll = new PalindromeLL();
         ll.addFirst(1);
         ll.addEnd(2);
         ll.addEnd(2);
-        ll.addEnd(4);
+        ll.addEnd(1);
         // ll.addAtIndex(4, 1);
         
         // System.out.println(ll.delNthNode(2));
