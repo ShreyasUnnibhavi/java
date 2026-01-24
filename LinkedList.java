@@ -25,7 +25,7 @@ public class LinkedList {
     }
 
     //method to add a node at the end
-    public void addEnd(int data){
+    public void addLast(int data){
         size++;
         Node newNode = new Node(data);
         if(head == null){
@@ -38,7 +38,7 @@ public class LinkedList {
     }
 
     //method to add Node in the middle
-    public void addAtIndex(int index, int data){
+    public void add(int index, int data){
         if(index == 0){
             addFirst(data);
             return;
@@ -60,7 +60,7 @@ public class LinkedList {
     }
 
     //method to delete Node at the beginning
-    public int delFirst(){
+    public int removeFirst(){
         if(head == null){
             System.out.println("Empty list");
             return Integer.MIN_VALUE;
@@ -77,7 +77,7 @@ public class LinkedList {
     }
 
     //method to delete node at the end
-    public int delEnd(){
+    public int removeLast(){
         if(head == null) {
             System.out.println("List is empty");
             return Integer.MIN_VALUE;
@@ -208,15 +208,82 @@ public class LinkedList {
         return;
     }
 
+    //method to implement Merge sort in linked lists
+    public Node findMid(Node temp){
+        Node slow = temp;
+        Node fast = temp.next;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    public Node merge(Node left, Node right){
+        Node mergedLL = new Node(-1); //dummy node
+        Node temp = mergedLL;       //iterating Node
+
+        while(left != null && right != null){
+            if(left.data <= right.data){
+                temp.next = left;
+                left = left.next;
+            }else{
+                temp.next = right;
+                right = right.next;
+            }
+            temp = temp.next;
+        }
+
+        //Adding the remaining nodes in left half
+        while(left != null){
+            temp.next = left;
+            left = left.next;
+            temp = temp.next;
+        }
+
+        //adding remaining nodes in right half
+        while(right != null){
+            temp.next = right;
+            right = right.next;
+            temp = temp.next;
+        }
+
+        return mergedLL.next;
+    }
+    public Node mergeSort(Node head){
+        //base case
+        if(head == null || head.next == null){
+            return head;
+        } 
+
+        //1. Find middle
+        Node mid = findMid(head); 
+        
+        //2. split into left and right
+        Node rightHead = mid.next;      
+        mid.next = null;  
+
+        //Recursion
+        //3. sort left half
+        Node newLeft = mergeSort(head);
+        //4. sort right half
+        Node newRight = mergeSort(rightHead);
+
+        return merge(newLeft, newRight);
+    }
+    public Node sort(){
+        return mergeSort(head);
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
-        ll.addFirst(1);
-        ll.addEnd(2);
-        ll.addEnd(3);
-        ll.addEnd(4);
-        ll.addAtIndex(4, 10);
-        System.out.println(ll.delNthNode(2));
-        // System.out.println(ll.delNthElementFromEnd(1));
-        ll.print();
+        ll.addFirst(2);
+        ll.addLast(7);
+        ll.addLast(3);
+        ll.addLast(10);
+        ll.addLast(9);
+        
+        ll.print();     //before sorting
+        head = ll.sort();      
+        ll.print();     //after sorting
     }
 }
