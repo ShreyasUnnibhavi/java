@@ -127,25 +127,39 @@ public class ZigZagLL {
     }
     //merge the left and right lists to from zigzag list
     public Node mergeZigzag(Node left, Node right){
-        Node mergedLL = new Node(-1);
-        Node temp = mergedLL;
-        boolean flag = true;
-        while(left != null && right != null){
-            if(flag){         
-                temp.next = left;
-                left = left.next;
-            }else{
-                temp.next = right;
-                right = right.next;
-            }
-            temp = temp.next;
-            flag = !flag;
-        }
+        // Node mergedLL = new Node(-1);
+        // Node temp = mergedLL;
+        // boolean flag = true;
+        // while(left != null && right != null){
+        //     if(flag){         
+        //         temp.next = left;
+        //         left = left.next;
+        //     }else{
+        //         temp.next = right;
+        //         right = right.next;
+        //     }
+        //     temp = temp.next;
+        //     flag = !flag;
+        // }
 
-        //adding the remaining nodes either in left half or right half
-        if(left != null) temp.next = left;
-        if(right != null) temp.next = right;
-        return mergedLL.next;
+        // //adding the remaining nodes either in left half or right half
+        // if(left != null) temp.next = left;
+        // if(right != null) temp.next = right;
+        // return mergedLL.next;
+        Node head = left;
+        Node nextLeft;
+        Node nextRight;
+        
+        while(left != null && right != null){
+            nextLeft = left.next;
+            left.next = right;
+            nextRight = right.next;
+            right.next = nextLeft;
+
+            left = nextLeft;
+            right = nextRight;
+        }
+        return head;
     }
     public Node zigzagLL(){
         //creating left half of the list
@@ -173,6 +187,7 @@ public class ZigZagLL {
         sol.addLast(3);
         sol.addLast(4);
         sol.addLast(5);
+        sol.addLast(6);
         head = sol.zigzagLL();
         sol.print();
     }
