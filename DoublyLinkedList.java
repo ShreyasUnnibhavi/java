@@ -128,6 +128,25 @@ public class DoublyLinkedList {
         temp.next.prev = temp;
         size--;
     }
+
+    //method to reverse
+    public void reverse(){
+        if(head == null || size == 1) return;
+        tail = head;
+        Node curr = head;
+        Node prev = null;
+        Node next;
+
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next;
+
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
     public static void main(String[] args) {
         DoublyLinkedList dll = new DoublyLinkedList();
         dll.addFirst(1);
@@ -135,6 +154,7 @@ public class DoublyLinkedList {
         dll.addLast(3);
         dll.add(2, 100);
         dll.remove(2);
+        dll.reverse();
         dll.print();
     }
 }
