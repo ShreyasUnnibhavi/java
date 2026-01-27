@@ -1,31 +1,29 @@
 import java.util.ArrayList;
 public class ArrayListStack {
-    static class stack{
-        static ArrayList<Integer> list = new ArrayList<>();
+    static class stack<T>{
+        private ArrayList<T> list = new ArrayList<>();
         public boolean isEmpty(){
             return list.size() == 0;
         }
-        public static void push(int data){
+        public void push(T data){
             list.add(data);
         }
-        public static int pop(){
-            if(list.size() == 0)
-                return -1;
-            int top = list.get(list.size() - 1);
-            list.remove(list.size() - 1);
-            return top;
+        public T pop(){
+            if(list.isEmpty())
+                throw new java.util.EmptyStackException();
+            return list.remove(list.size() - 1);
         }
-        public static int peek(){
-            if(list.size() == 0) 
-                return -1;
+        public T peek(){
+            if(list.isEmpty()) 
+                throw new java.util.EmptyStackException();
             return list.get(list.size()-1);
         }
     }
     public static void main(String[] args) {
-        stack list = new stack();
-        list.push(1);
-        list.push(2);
-        list.push(3);
+        stack<String> list = new stack<>();
+        list.push("World");
+        list.push("hellow");
+        list.push("-----");
 
         while(!list.isEmpty()){
             System.out.println(list.pop());
