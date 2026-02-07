@@ -11,30 +11,15 @@ public class SingletonPattern {
     }
 }
 class DatabaseConnection {
-    //"volatile" ensures that changes made by one thread are immedietly visible to others
-    private static volatile DatabaseConnection instance;
+    
+    private DatabaseConnection() {}
 
-    //private constructor so that it cannot be accessible to outside of this class
-    private DatabaseConnection() {
-        System.out.println("connecting to database");
+    private static class InstanceHolder {
+        private static final DatabaseConnection INSTANCE = new DatabaseConnection();
     }
 
-    //Method is made public to enable accessibility outside of the class
-    public static DatabaseConnection getInstance() {
-        //1st Check: If it's already created, just return it (FAST)
-        if(instance == null) {
-            instance = new DatabaseConnection();
-            synchronized (DatabaseConnection.class) {
-                // 2nd Check: Double-check inside the lock to be sure
-                // another thread didn't create it while we were waiting
-                if (instance == null) {
-                    instance = new DatabaseConnection();
-                }
-            }
-        }
-
-        //return the instance/object if created at the beginning or the same old object everytime any class creates it
-        return instance;
+    public static DatabaseConnection getInstance(){
+        return InstanceHolder.INSTANCE;
     }
 
     public void executeQuery(String query) {
