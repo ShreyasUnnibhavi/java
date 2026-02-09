@@ -1,4 +1,4 @@
-public class rotatedSortedArraySearch {
+public class RotatedSortedArraySearch {
     public static int search(int array[], int target){
         int left = 0;
         int right = array.length-1;
@@ -20,7 +20,8 @@ public class rotatedSortedArraySearch {
                     right = mid - 1;
                 }
             }
-        }return -1;
+        }
+        return -1;
     }
     public static void main(String args[]){
         int array[] = {5, 6, 7, 8, 9, 1, 2, 3, 4};

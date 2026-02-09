@@ -1,4 +1,4 @@
-public class transpose {
+public class Transpose {
     public static void findTranspose(int matrix[][]){
         int transpose[][] = new int[matrix[0].length][matrix.length];
         for(int i=0; i<matrix[0].length; i++){

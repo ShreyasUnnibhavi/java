@@ -1,4 +1,4 @@
-public class largestString {
+public class LargestString {
     public static void findLargest(String str[]){
         String largest = str[0];
         for(int i=1; i<str.length; i++){

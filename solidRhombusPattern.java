@@ -1,18 +1,15 @@
-public class solidRhombusPattern {
+public class SolidRhombusPattern {
     public static void main(String args[]){
         int n = 5;
-        for(int i=1; i<=n; i++){
-            //spaces
-        for(int j=1; j<=n-i; j++){
+        for(int i = n-1; i >= 0; i--){
+            //!spaces
+            for(int j = 0; j <= i; j++){
                 System.out.print(" ");
             }
-            //stars
-            for(int j=1; j<=n; j++){
+
+            //!stars
+            for(int j = 0; j < n; j++){
                 System.out.print("*");
-            }
-            //spaces
-            for(int j=n; j>=n-i; j--){
-                System.out.print(" ");
             }
             System.out.println();
         }

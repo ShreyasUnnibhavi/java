@@ -1,4 +1,4 @@
-public class bitManipulation {
+public class BitManipulation {
     public static void getIthBit(int num, int i){
         int bitmask = 1<<i;
         if((num & bitmask) == 0){System.out.println(i + "th bit= 0");}
@@ -25,13 +25,13 @@ public class bitManipulation {
     public static boolean checkPowerOf2(int n){
         int res = n & n-1;
         if(res != 0) return false;
-        else return true;
+        return true;
     }
     public static void main(String args[]){
         // getIthBit(7, 2);
         // System.out.println(clearIthBit(10,3));
         // System.out.println(clearLastIBits(15,2));
         // System.out.println(clearRangeOfBits(10,2,4));
-        System.out.print(checkPowerOf2(15));
+        System.out.print(checkPowerOf2(10));
     }
 }
