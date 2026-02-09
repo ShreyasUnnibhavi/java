@@ -1,4 +1,4 @@
-public class searchInSortedMatrix {
+public class SearchInSortedMatrix {
     public static void search(int matrix[][], int key){
         int n = matrix.length;
         int row = n-1, column = 0;
@@ -7,6 +7,10 @@ public class searchInSortedMatrix {
                 column++;
             }else{
                 row--;
+            }
+            if(row < 0 || column >= n){
+                System.out.println("Key not found");
+                return;
             }
         }
         System.out.print(row + " " + column);
@@ -18,6 +22,6 @@ public class searchInSortedMatrix {
             {27,29,37,48},
             {32,33,39,50}
         };
-        search(matrix,32);
+        search(matrix,50);
     }
 }
