@@ -14,9 +14,8 @@ public class lowercaseVowels {
     }
     public static void main(String args[]){
         System.out.println("Enter a string");
-        try (Scanner sc = new Scanner(System.in)) {
-            String str = sc.nextLine();
-            countVowels(str);
-        }
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        countVowels(str);
     }
 }
