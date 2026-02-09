@@ -1,20 +1,23 @@
 import java.util.*;
 public class anagram{
-    public static void checkForAnagram(String str1,String str2){
+    public static boolean checkForAnagram(String str1,String str2){
+        if(str1.length() != str2.length())
+            return false;
         str1 = str1.toLowerCase();
         str2 = str2.toLowerCase();
-        
-        char[] charArr1 = str1.toCharArray();
-        char[] charArr2 = str2.toCharArray();
 
-        Arrays.sort(charArr1);
-        Arrays.sort(charArr2);
+        char[] charArray1 = str1.toCharArray();
+        char[] charArray2 = str2.toCharArray();
 
-        if(Arrays.equals(charArr1,charArr2)){
-            System.out.println("True");
-        }else{
-            System.out.println("False");
+        Arrays.sort(charArray1);
+        Arrays.sort(charArray2);
+
+        for(int i = 0; i < charArray1.length; i++){
+            if(charArray1[i] != charArray2[i])
+                return false;
         }
+
+        return true;
     }
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
@@ -22,6 +25,6 @@ public class anagram{
         String str1 = sc.nextLine();
         System.out.println("Enter string2: ");
         String str2 = sc.nextLine();
-        checkForAnagram(str1,str2);
+        System.out.println(checkForAnagram(str1,str2));
     }
 }
