@@ -1,16 +1,20 @@
 public class DuplicatesInString {
-    public static StringBuilder uniqueString(String str, StringBuilder sb, int i, boolean track[]){
-        if(i >= str.length()){
-            return sb;
+    public static String removeDuplicates(String str, boolean characters[], StringBuilder sb, int i) {
+        //^Base case
+        if(i >= str.length())
+            return sb.toString();
+        //^Recursion
+        char curr = str.charAt(i);
+        if(characters[curr - 'a'] == false) {
+            characters[curr - 'a'] = true;
+            sb.append(curr);
         }
-        if(track[(int)str.charAt(i) - 'a'] == false){  //97 can also be written instead of 'a' (ASCII value of 'a' is 97)
-            track[(int)str.charAt(i) - 'a'] = true;
-            sb.append(str.charAt(i));
-        }
-        return uniqueString(str, sb, i+1, track);
+
+        return removeDuplicates(str, characters, sb, i+1);
     }
     public static void main(String[] args) {
-        String str = "apnacollege";
-        System.out.println(uniqueString(str,new StringBuilder(""),0,new boolean[26]));
+        String str = "Shreyas";
+        String str1 = str.toLowerCase();
+        System.out.println(removeDuplicates(str1, new boolean[26], new StringBuilder(), 0));
     }
 }
