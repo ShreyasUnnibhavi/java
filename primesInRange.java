@@ -3,13 +3,17 @@ import java.util.*;
 public class primesInRange{
     public static void findPrimes(int sn, int en){
         for(int i = sn; i <= en; i++){
-            for(int j = 2; j <= Math.sqrt(i); j++){
+            int j = 2;
+            boolean isPrime = true;
+            while(j <= Math.sqrt(i)) {
                 if(i % j == 0){
+                    isPrime = false;
                     break;
-                }else{
-                    System.out.println(i);
                 }
+                j++;
             }
+            if(isPrime && i > 1)
+                System.out.println(i);
         }
     }
     public static void main(String args[]){
