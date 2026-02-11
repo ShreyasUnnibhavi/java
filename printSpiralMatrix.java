@@ -1,34 +1,37 @@
 public class printSpiralMatrix {
     public static void Print(int array[][]){
-        int startRow = 0, startCol = 0; 
-        int endRow = array.length-1, endCol = array[0].length-1;
-        while(startRow <= endRow && startCol <= endCol){
-            //top
-            for(int i = startCol; i <= endCol; i++){
-                System.out.print(array[startRow][i] + " ");
+        int sr = 0, er = array.length - 1;
+        int sc = 0, ec = array[0].length - 1;
+
+        while(sr <= er && sc <= ec) {
+            //! TOP
+            for(int i = sc; i <= ec; i++) {
+                System.out.print(array[sr][i] + ", ");
             }
 
-            //right
-            for(int i = startRow+1; i <= endRow; i++){
-                System.out.print(array[i][endCol] + " ");
+            //! RIGHT
+            for(int i = sr+1; i <= er; i++) {
+                System.out.print(array[i][ec] + ", ");
             }
 
-            //bottom
-            for(int i = endCol-1; i >= startCol; i--){
-                if(startRow == endRow) break;
-                System.out.print(array[endRow][i] + " ");
+            //! BOTTOM
+            if(sr < er) {
+                for(int i = ec-1; i >= sc; i--) {
+                    System.out.print(array[er][i] + ", ");
+                }
             }
 
-            //left
-            for(int i = endRow-1; i >= startRow+1; i--){
-                if(startCol == endCol) break;
-                System.out.print(array[i][startCol] + " ");
+            //! LEFT
+            if(sc < ec) {
+                for(int i = er-1; i > sr; i--) {
+                    System.out.print(array[i][sc] + ", ");
+                }
             }
 
-            startRow++;
-            startCol++;
-            endCol--;
-            endRow--;
+            sr++;
+            er--;
+            sc++;
+            ec--;
         }
     }
     public static void main(String args[]){
@@ -37,7 +40,8 @@ public class printSpiralMatrix {
             {5, 6, 7, 8},
             {9, 10, 11, 12},
             {13, 14, 15, 16},
-            {17, 18, 19, 20}
+            {17, 18, 19, 20},
+            {21, 22, 23, 25}
         };
         Print(array);
     }
