@@ -1,85 +1,78 @@
-// Game where there are three characters namely human, ghost and robot
-// All three characters have a name and health  (abtract class implementation)
-// only ghosts can fly (interface implementation)
-// only robots can recharge (interface implementation) 
-// characters decide how they die (abstract implementation)
 public class InterfaceAbstraction {
     public static void main(String[] args) {
-        Human man = new Human("man" , 100);
-        Ghost me = new Ghost("me" , 200);
-        Robot chitti = new Robot("chitti", 300);
-        man.die();
-        me.fly();
-        me.die();
-        chitti.recharge();
-        chitti.die();
+        Robot chitti = new Robot("Chitti", 200);
+        Ghost Arundhati = new Ghost("Arundhati", 300);
+        Human lala = new Human("Lala", 100);
+
+        System.out.println("character: " + chitti.name + ", health: " + chitti.health + ", " + chitti.recharge() + ", " + chitti.die());
+        System.out.println("character: " + Arundhati.name + ", health: " + Arundhati.health + ", " + Arundhati.fly() + ", " + Arundhati.die());
+        System.out.println("character: " + lala.name + ", health: " + lala.health + ", " + lala.die());
     }
 }
-abstract class GameCharacter{
-    String name;
+
+abstract class GameCharacter {
     int health;
-    
-    GameCharacter(String name, int health){
-        this.name = name;
+    String name;
+
+    GameCharacter(int health, String name) {
         this.health = health;
+        this.name = name;
     }
 
-    abstract void die();
+    abstract String die();
 }
 
-interface Flyable{
-    void fly();
+interface Flyable {
+    String fly();
 }
 
-interface Rechargeable{
-    void recharge();
+interface Rechargeable {
+    String recharge();
 }
 
-//implementation for ghost
-class Ghost extends GameCharacter implements Flyable{
-    
-    Ghost(String name, int health){
-        super(name,health);
+class Robot extends GameCharacter implements Rechargeable {
+    Robot(String name, int health) {
+        super(health, name);
     }
 
+    //^ Abstract method implementation
     @Override
-    public void fly(){
-        System.out.println(this.name + " flies");
+    public String die() {
+        return (this.name + " Died with low battery");
     }
 
+    //* Inherited abstract method implemenmtation
     @Override
-    public void die(){
-        System.out.println(this.name + " dies after falling down");
+    public String recharge() {
+        return (this.name + " charged successfully");
     }
-}
+} 
 
-//implementation for robot
-class Robot extends GameCharacter implements Rechargeable{
-
-    Robot(String name, int health){
-        super(name, health);
+class Ghost extends GameCharacter implements Flyable {
+    Ghost(String name, int health) {
+        super(health, name);
     }
 
+    //^ Abstract method implementation
     @Override
-    public void recharge(){
-        System.out.println(this.name + " recharged");
+    public String die() {
+        return (this.name + " Died from fall");
     }
 
+    //* Inherited abstract method implemenmtation
     @Override
-    public void die(){
-        System.out.println(this.name + " dies after low charge");
+    public String fly() {
+        return (this.name + " flew successfully");
     }
-}
+} 
 
-//implementation for human
-class Human extends GameCharacter{
-    
-    Human(String name, int health){
-        super(name,health);
+class Human extends GameCharacter {
+    Human(String name, int health) {
+        super(health, name);
     }
 
-    @Override
-    public void die(){
-        System.out.println(this.name + " is killed");
+    //^ Abstract class implementation
+    public String die() {
+        return (this.name + " is killed");
     }
 }
