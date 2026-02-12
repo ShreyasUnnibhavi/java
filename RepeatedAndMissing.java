@@ -3,21 +3,23 @@ import java.util.Arrays;
 public class RepeatedAndMissing {
     public int[] findMissingAndRepeatedValues(int[][] grid) {
         int n = grid.length;
-        int count[] = new int[n*n + 1];
-        int ret[] = new int[2];
-        for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j < grid[0].length; j++){
-                count[grid[i][j]]++;
+        int check[] = new int[n*n+1];
+        int pair[] = new int[2];
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                check[grid[i][j]]++;
             }
         }
-        for(int i = 1; i < count.length; i++){
-            if(count[i] > 1){
-                ret[0] = i;
-            }else if(count[i] == 0){
-                ret[1] = i;
-            }
+
+        for(int i = 1; i < check.length; i++) {
+            if(check[i] > 1) 
+                pair[0] = i;    //? Repeated numbner
+            else if(check[i] == 0) 
+                pair[1] = i;    //? Missing number
         }
-        return ret;
+
+        return pair;
     }
 
     public static void main(String[] args) {
