@@ -1,78 +1,75 @@
-// print all the subarrays of an array, also calculate the sum of each subarray
-// and find the minimum and maximum value of all the sums
 public class subarrays {
-    public static void printSubarrays(int numbers[]){
-        int min = Integer.MIN_VALUE;
-        int max = Integer.MAX_VALUE;
-        for(int i=0; i<numbers.length; i++){
-            int start = i;
-            for(int j=i; j<numbers.length; j++){
-                int end = j;
-                int sum = 0;
-                for(int k=start; k<=end; k++){
-                    System.out.print(numbers[k]);
-                    sum = sum + numbers[k];
+    public static void printSubarrays(int nums[]) {
+        int n = nums.length;
+        for(int i = 0; i < n; i++) {
+            //^ Using the Stringbuilder to optimize the TC from O(n^3) to O(n^2)
+            StringBuilder curr = new StringBuilder();
+            for(int j = i; j < n; j++) {
+                curr.append(nums[j]);
+                System.out.println(curr + " ");
+            }
+        }
+    }
+    public static void bruteForceMaxSum(int nums[]) {
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for(int i = 0; i < nums.length; i++) {
+            for(int j = i; j < nums.length; j++) {
+                int currSum = 0;
+                for(int k = i; k <= j; k++) {
+                    currSum = currSum + nums[k];
                 }
-                if(sum>min)min = sum;
-                if(sum<max)max = sum;
-                System.out.print(" = " +sum + "\n");
+                max = Math.max(max, currSum);
+                min = Math.min(min, currSum);
             }
-            System.out.println();
         }
-        System.out.print("maximum= "+max+" Minimum= "+min);
+        System.out.println(max + ", " + min);
     }
-    public static void prefixMethod(int numbers[]){
-        int min = Integer.MIN_VALUE;
-        int max = Integer.MAX_VALUE;
-        int prefix[] = new int[numbers.length];
-        prefix[0] = numbers[0];
-        for(int i=1; i<numbers.length; i++){
-            prefix[i] = prefix[i-1] + numbers[i];
+    public static void prefixMethod(int nums[]) {
+        int prefix[] = new int[nums.length];
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        prefix[0] = nums[0];
+        for(int i = 1; i < nums.length; i++) {
+            prefix[i] = prefix[i-1] + nums[i];
         }
-        for(int i=0; i<numbers.length; i++){
+        for(int i = 0; i < nums.length; i++) {
             int start = i;
-            for(int j=i; j<numbers.length; j++){
+            for(int j = i; j < nums.length; j++) {
                 int end = j;
-                int prefixSum = 0;
-                prefixSum = start==0? prefix[end]: prefix[end] - prefix[start-1];
-                if(prefixSum>min)min = prefixSum;
-                if(prefixSum<max)max = prefixSum;
-                System.out.print(" = " +prefixSum + "\n");
+                int prefixSum = start == 0 ? prefix[end] : prefix[end] - prefix[start-1];
+                max = Math.max(max, prefixSum);
+                min = Math.min(min, prefixSum);
             }
-            System.out.println();
         }
-        System.out.print("maximum= "+max+" Minimum= "+min);
+        System.out.println(max + ", " + min);
     }
-    public static void kadenes(int numbers[]){
-        int currSum = 0;
+    public static void kadanes(int nums[]) {
+        int curr = 0;
         int count = 0;
-        int maxSum = Integer.MIN_VALUE;
-        for(int i=0; i<numbers.length; i++){
-            if(numbers[i] < 0){
-                count++;
+        int max = Integer.MIN_VALUE;
+        for(int i = 0; i < nums.length; i++) {
+            count = nums[i] < 0 ? count++: count;
+        }
+
+        for(int i = 0; i < nums.length; i++) {
+            if(count == nums.length) {
+                max = Math.max(max, nums[i]);
+            }else {
+                curr = curr + nums[i];
+                if(curr < 0) {
+                    curr = 0;
+                }
+                max = Math.max(max, curr);
             }
         }
-        for(int i=0; i<numbers.length; i++){
-            if(count == numbers.length){
-                if(numbers[i] > maxSum){
-                    maxSum = numbers[i];
-                }
-            }else{
-                currSum = currSum + numbers[i];
-                if(currSum < 0){
-                    currSum = 0;
-                }
-                if(currSum > maxSum){
-                    maxSum = currSum;
-                }
-            }    
-        }
-        System.out.print("maximum: "+ maxSum);
+        System.out.println(max);
     }
     public static void main(String args[]){
-        int numbers[] = {-2,-1,-3,-4,-1,-2,-1,-5,-4};
-        // printSubarrays(numbers);
-        // prefixMethod(numbers);
-        kadenes(numbers);
+        int numbers[] = {1,2,3};
+        bruteForceMaxSum(numbers);
+        prefixMethod(numbers);
+        kadanes(numbers);
+        printSubarrays(numbers);
     }
 }
