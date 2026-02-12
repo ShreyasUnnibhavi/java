@@ -1,6 +1,6 @@
 public class SortColors {
     public static void sortColors(int[] nums) {
-        int count[] = new int[nums.length+2];
+        int count[] = new int[3];
         for(int i =0; i < nums.length; i++){
             count[nums[i]]++;
         }
