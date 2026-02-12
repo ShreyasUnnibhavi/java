@@ -1,13 +1,15 @@
 public class IndexesOfKey {
-    public static void indexesOfKey(int array[], int key, int i){
-        if(i == array.length) return ;
-        if(array[i] == key){
+    public static void indexes(int nums[], int key, int i) {
+        //! Base case
+        if(i == nums.length)
+            return;
+        //! Recursion
+        if(nums[i] == key) 
             System.out.println(i);
-        }
-        indexesOfKey(array, key, i+1);
+        indexes(nums, key, i+1);
     }
     public static void main(String[] args) {
         int array[] = {1,2,3,4,5,3,6,4,3};
-        indexesOfKey(array, 9, 0);
+        indexes(array, 3, 0);
     }
 }
