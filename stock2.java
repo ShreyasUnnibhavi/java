@@ -1,20 +1,15 @@
 public class stock2 {
     public static void sellForMaxProfit(int stocks[]){
+        int bp = stocks[0];
         int maxProfit = 0;
-        int diff;
-        for(int i = 0; i <= stocks.length; i++){
-            for(int j = i+1; j < stocks.length; j++){
-                diff = stocks[j] - stocks[i];
-                if(diff > maxProfit){
-                    maxProfit = diff;
-                }
+        for(int i = 1; i < stocks.length; i++) {
+            maxProfit = Math.max(maxProfit, stocks[i] - bp);
+            if(stocks[i] < bp) {
+                bp = stocks[i];
             }
         }
-        if(maxProfit < 0){
-            System.out.print("0");
-        }else{
-            System.out.print(maxProfit);
-        }
+        maxProfit = maxProfit > 0 ? maxProfit : 0;
+        System.out.println(maxProfit);
     }
     public static void main(String args[]){
         int stocks[] = {2,3,1,5,3,5,8,9};
