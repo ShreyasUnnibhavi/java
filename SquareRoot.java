@@ -1,21 +1,21 @@
 public class SquareRoot {
-    public static int mySqrt(int x) {
-        if(x == 1 || x == 0) return x;
-        long left = 1;
-        long right = x;
-        while(left <= right){
-            long mid = left + (right - left)/2;
-            if(mid * mid == x){
-                return (int) mid;
-            }else if( mid * mid > x){
+    public static int mySqrt(int num) {
+        if(num == 0) return 0;
+        int left = 0;
+        int right = num;
+        while(left <= right) {
+            int mid = right - (right - left)/2;
+            long square = mid * mid;
+            if(square == num)
+                return mid;
+            else if(square > num)
                 right = mid - 1;
-            }else{
+            else
                 left = mid + 1;
-            }
         }
-        return (int) right;
+        return right;
     }
     public static void main(String[] args) {
-        System.out.println(mySqrt(8));
+        System.out.println(mySqrt(9));
     }
 }
