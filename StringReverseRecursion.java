@@ -1,10 +1,11 @@
 public class StringReverseRecursion {
-    public static String reverse(String str){
-        if(str == null || str.length() <= 1){
+    public static String reverse(String str) {
+        //! Base case
+        if(str == null || str.length() <= 1) 
             return str;
-        }
-        String reversedSubstring = reverse(str.substring(1));
-        return reversedSubstring + str.charAt(0);
+        //! Recursion
+        String reversedString = reverse(str.substring(1));
+        return reversedString + str.charAt(0);
     }
     public static void main(String[] args) {
         String str = "hello";
