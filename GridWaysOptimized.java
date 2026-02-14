@@ -1,17 +1,18 @@
 public class GridWaysOptimized {
-    public static long findWays(int n, int m){
-        int N = n + m - 2;      //total moves
-        int r = m - 1;          //total down moves/ can be right moves as well(m - 1)
+    public static int findWays(int n, int m) {
+        int totalWays = n + m - 2;  //! Total moves/ Depth
+        int r = n - 1;  //! numbers of ways (dowm/right) that must be correct
 
-        if(r > N - r){
-            r = N - r;
-        }
+        if(r > totalWays - r)
+            r = totalWays - r;
+
         long res = 1;
-        for(int i = 1; i <= r; i++){
-            res = res * (N - i + 1);
+        for(int i = 1; i <= r; i++) {
+            res = res * (totalWays - i + 1);
             res = res / i;
         }
-        return res;
+
+        return (int)res;
     }
     public static void main(String[] args) {
         int n = 4, m = 3;
