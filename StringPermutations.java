@@ -5,10 +5,13 @@ public class StringPermutations{
         str[j] = temp;
     }
     public static void printPermutations(char str[], int fi, int i){
+        //& Base case
         if(fi == str.length-1){
             System.out.println(str);
             return;
         }
+
+        //& Recursion
         for(i = fi; i < str.length; i++){
             swap(str, fi, i);
             printPermutations(str, fi+1, i);
@@ -16,13 +19,15 @@ public class StringPermutations{
         }
     }
     public static void permutations(String str, String ans){
+        //! Base case
         if(str.length() == 0) {
             System.out.println(ans);
             return;
         }
-        for(int i = 0; i < str.length(); i++){
+        //! Recursion
+        for(int i = 0; i < str.length(); i++) {
             char curr = str.charAt(i);
-            String newStr = str.substring(0, i) + str.substring(i+1);
+            String newStr = str.substring(0, i) + str.substring(i + 1, str.length());
             permutations(newStr, ans + curr);
         }
     }
