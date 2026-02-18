@@ -1,35 +1,38 @@
 public class QuickSort {
-    public static void print(int nums[]){
-        for(int i = 0; i < nums.length; i++){
+    public static void print(int nums[]) {
+        for(int i = 0; i < nums.length; i++) {
             System.out.print(nums[i] + " ");
         }
     }
-    public static void sort(int nums[], int si, int ei){
-        if(si >= ei) return;
-         
-        int pIdx = partition(nums, si, ei);
-        sort(nums, si, pIdx-1);
-        sort(nums, pIdx+1, ei);
+    public static void swap(int nums[], int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
-    public static int partition(int nums[], int si, int ei){
+    public static int partition(int nums[], int si, int ei) {
         int pivot = nums[ei];
-        int i = si - 1;     //iterator to make space for elements smaller than pivot element
-        for(int j = si; j < ei; j++){
-            if(nums[j] <= pivot){
+        int i = si - 1;
+        for(int j = si; j < ei; j++) {
+            if(nums[j] <= pivot) {
                 i++;
-                //swap
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
+                swap(nums, i, j);
             }
         }
         i++;
-        //swap the pivot element
-        int temp = pivot;
-        nums[ei] = nums[i];
-        nums[i] = temp;
+        swap(nums, i, ei);
         return i;
     }
+    public static void sort(int nums[], int si, int ei) {
+        //^ Base case
+        if(si >= ei)
+            return;
+
+        //^ Recursion
+        int pivot = partition(nums, si, ei);    //* finding the pivot element and putting all smaller numbers to its left
+        sort(nums, si, pivot-1);                //* Sort left half (pivot excluded)
+        sort(nums, pivot+1, ei);                //* Sort right half (pivot excluded)
+    }
+
     public static void main(String[] args) {
         int nums[] = {2, 5, 1, 7, 9, 2, 4, -2};
         sort(nums, 0, nums.length-1);
