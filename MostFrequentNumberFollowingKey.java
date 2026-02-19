@@ -2,18 +2,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MostFrequentNumberFollowingKey {
-    public static int findTarget(ArrayList<Integer> nums, int key){
-        int counts[] = new int[1001];
-        for(int i = 0; i < nums.size()-1; i++){
-            if(nums.get(i) == key){
-                counts[nums.get(i+1)]++;
-            }
+    public static int findTarget(ArrayList<Integer> nums, int key) {
+        int count[] = new int[1001];
+        for(int i = 0; i < nums.size()-1; i++) {
+            if(nums.get(i) == key)
+                count[nums.get(i)]++;
         }
+
         int max = 0;
         int target = 0;
-        for(int i = 0; i < counts.length; i++){
-            if(counts[i] > 0 && counts[i] > max){
-                max = counts[i];
+        for(int i = 0; i < count.length; i++) {
+            if(count[i] > 0 && count[i] > max) {
+                max = count[i];
                 target = i;
             }
         }
