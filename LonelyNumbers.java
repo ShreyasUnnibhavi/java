@@ -20,21 +20,20 @@ public class LonelyNumbers {
     public static ArrayList<Integer> optimized(ArrayList<Integer> nums){
         ArrayList<Integer> newList = new ArrayList<>();
         Collections.sort(nums);
-        for(int i = 1; i < nums.size()-1; i++){
-            if(nums.get(i-1) < nums.get(i)-1 && nums.get(i+1) > nums.get(i) + 1) {
+
+        for(int i = 1; i < nums.size()-1; i++) {
+            if((nums.get(i-1) < nums.get(i)-1) && (nums.get(i+1) > nums.get(i)+1))
                 newList.add(nums.get(i));
-            } 
         }
-        if(nums.size() == 1){
+        if(nums.size() < 2)
             newList.add(nums.get(0));
-        }else{
-            if(nums.get(0) + 1 < nums.get(1)) {
+        else {
+            if(nums.get(0) + 1 < nums.get(1))
                 newList.add(nums.get(0));
-            }
-            if(nums.get(nums.size()-2) + 1 < nums.get(nums.size()-1)) {
+            if(nums.get(nums.size()-1) > nums.get(nums.size()-2) + 1)
                 newList.add(nums.get(nums.size()-1));
-            }
         }
+
         return newList;
     }
     public static void main(String[] args) {
