@@ -1,41 +1,38 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PairSum2 {
-    public static boolean findTarget(ArrayList<Integer> list, int target){
+    public static boolean findTarget(ArrayList<Integer> list, int sum) {
+        //? 1. Find pivot element
         int pivot = -1;
-        for(int k = 0; k < list.size()-1; k++){
-            if(list.get(k) > list.get(k + 1)){
-                pivot = k+1;
+        for(int i = 0; i < list.size()-1; i++) {
+            if(list.get(i) > list.get(i + 1)) {
+                pivot = i + 1;
                 break;
-            }
+            } 
         }
-        if(pivot == -1) pivot = 0;
-        int j = pivot;
-        int i = pivot-1;
-        if(i == -1) i = list.size()-1;
-        while(i != j){
-            if(list.get(i) + list.get(j) == target) return true;
-            else if(list.get(i) + list.get(j) > target){
-                i--;                                //(i + list.size() - 1) % list.size();
-                if(i == -1) i = list.size()-1;      //
-            }else{
-                 j++;                               //(j + 1) % list.size()
-                 if(j == list.size()) j = 0;        //
+
+        int j = pivot - 1;
+        int i = pivot;
+        while(i != j) {
+            if(list.get(i) + list.get(j) == sum)
+                return true;
+            else if(list.get(i) + list.get(j) > sum) {
+                j--;
+                if(j == -1)
+                    j = list.size()-1;
+            }else {
+                i++;
+                if(i == list.size())
+                    i = 0;
             }
         }
         return false;
     }
     public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>();
-        //11, 15, 6, 8, 9, 10
-        list.add(2);
-        list.add(4);
-        list.add(6);
-        list.add(8);
-        list.add(9);
-        list.add(10);
-        int target = 20;
-        System.out.println(findTarget(list, target));
+        Integer arr[] = {11, 15, 6, 8, 9, 10};
+        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(arr));
+        System.out.println(findTarget(list, 14));
     }
 }
 
