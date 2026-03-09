@@ -6,7 +6,7 @@ public class MostFrequentNumberFollowingKey {
         int count[] = new int[1001];
         for(int i = 0; i < nums.size()-1; i++) {
             if(nums.get(i) == key)
-                count[nums.get(i)]++;
+                count[nums.get(i + 1)]++;
         }
 
         int max = 0;
@@ -17,6 +17,7 @@ public class MostFrequentNumberFollowingKey {
                 target = i;
             }
         }
+
         return target;
     }
     public static void main(String[] args) {
