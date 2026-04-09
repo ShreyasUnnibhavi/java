@@ -1,19 +1,17 @@
-public class SearchInSortedMatrix {
-    public static void search(int matrix[][], int key){
-        int n = matrix.length;
-        int row = n-1, column = 0;
-        while(key != matrix[row][column]){
-            if(key > matrix[row][column]){
-                column++;
-            }else{
-                row--;
-            }
-            if(row < 0 || column >= n){
-                System.out.println("Key not found");
+public class searchInSortedMatrix {
+    public static void search(int[][] matrix, int key) {
+        int row = 0, col = matrix[0].length - 1;
+        while(row < matrix.length && col >= 0) {
+            if(key == matrix[row][col]) {
+                System.out.println("Key is at index [" + row + ", " + col + "]");
                 return;
             }
+            else if(key > matrix[row][col])
+                row++;
+            else
+                col--;
         }
-        System.out.print(row + " " + column);
+        System.out.println("Key does not exist");
     }
     public static void main(String args[]){
         int matrix[][] = {
@@ -22,6 +20,6 @@ public class SearchInSortedMatrix {
             {27,29,37,48},
             {32,33,39,50}
         };
-        search(matrix,50);
+        search(matrix,10);
     }
 }
