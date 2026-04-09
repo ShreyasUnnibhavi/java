@@ -1,25 +1,23 @@
 import java.util.*;
 
 public class palindrome{
-    public static void check(int n){
-        int stay = n;
-        int comp;
-        int sum = 0;
-        while(n > 0){
-            comp = n % 10;
-            sum = sum*10 + comp;
-            n = n / 10;
+    public static void isPalindrome(int num) {
+        int temp = num;
+        long rev = 0; // use long to handle integer overflow
+        while(temp > 0) {
+            rev = rev*10 + (temp % 10);
+            temp /= 10;
         }
-        if(sum == stay){
-            System.out.print("Its a palindrome");
-        }else{
-            System.out.print("It ain't a palindrome");
-        }
+        if(rev == num) 
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not palindrome");
     }
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter a number: ");
         int n = sc.nextInt();
-        check(n);
+        isPalindrome(n);
+        sc.close();
     }
 }
