@@ -1,24 +1,24 @@
-import java.util.*;
+import java.util.Scanner;
 
-public class prime{
-    public static void main(String args[]){
+public class prime {
+    public static boolean isPrime(int num) {
+        if(num == 2)
+            return true;
+        else if(num == 0 || num == 1)
+            return false;
+        for(int i = 2; i <= Math.sqrt(num); i++) {
+            if(num % i == 0)
+                return false;
+        }
+        return true;
+    }
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter a number : ");
+        System.out.print("Enter a number: ");
         int num = sc.nextInt();
-        if(num == 2){
-            System.out.print("Prime number");
-        }
-        boolean isPrime = true;
-        for(int i = 2; i <= Math.sqrt(num); i++){
-            if((num % i) == 0){
-                isPrime = false;
-                break;
-            }
-        }
-        if(isPrime == false){
-            System.out.print("Not prime");
-        }else{
-            System.out.print("Prime");
-        }
+        if(isPrime(num))
+            System.out.println("Prime");
+        else
+            System.out.println("Not prime");
     }
 }
