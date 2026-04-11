@@ -49,7 +49,8 @@ public class subarrays {
         int count = 0;
         int max = Integer.MIN_VALUE;
         for(int i = 0; i < nums.length; i++) {
-            count = nums[i] < 0 ? count++: count;
+            if(nums[i] < 0)
+                count++;
         }
 
         for(int i = 0; i < nums.length; i++) {
@@ -62,14 +63,15 @@ public class subarrays {
                 }
                 max = Math.max(max, curr);
             }
+            
         }
         System.out.println(max);
     }
     public static void main(String args[]){
-        int numbers[] = {1,2,3};
-        bruteForceMaxSum(numbers);
-        prefixMethod(numbers);
+        int numbers[] = {-1,-2,-3};
+        // bruteForceMaxSum(numbers);
+        // prefixMethod(numbers);
         kadanes(numbers);
-        printSubarrays(numbers);
+        // printSubarrays(numbers);
     }
 }
