@@ -1,25 +1,20 @@
 public class MajorityElement {
+    //^ Boyer-moore voting algorithm
     public static int majorityElement(int nums[]) {
-        if(nums.length < 2) 
-            return nums[0];
-        int vote = 1;
-        int maj = nums[0];
-        for(int i = 1; i < nums.length; i++) {
-            //^ Case 1. if vote is 0, we pick a new candidate
-            if(vote == 0) {
-                maj = nums[i];
-                vote = 1;
-            }
-            //^ Case 2. if the current number equals the majority element so far, we increase the vote count by 1
-            else if(nums[i] == maj) {
-                vote++;
-            }
-            //^ Case 3. decrease the vote by 1 if the current number is different from majority element so far
-            else {
-                vote--;
-            }
+        int count = 0;
+        int candidate = 0;
+
+        for(int num : nums) {
+            if(count == 0)
+                candidate = num;
+
+            if(candidate == num)
+                count++;
+            else
+                count--;
         }
-        return maj;
+
+        return candidate;
     }
     public static void main(String args[]) {
         int nums[] = {2, 2, 1, 1, 1};
