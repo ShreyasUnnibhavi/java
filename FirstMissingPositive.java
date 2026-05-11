@@ -1,22 +1,29 @@
 public class FirstMissingPositive {
+    public static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
     public static int firstMissingPositive(int[] nums) {
         int n = nums.length;
-        for(int i = 0; i < n; i++) {
-            while(nums[i] > 0 && nums[i] <= n && nums[i] != nums[nums[i] - 1]) {
-                int targetIdx = nums[i]-1;
-                int temp = nums[i];
-                nums[i] = nums[targetIdx];
-                nums[targetIdx] = temp;
+        int i = 0;
+        while(i < n) {
+            int correctIndex = nums[i] - 1;
+            if(nums[i] > 0 && nums[i] < n && nums[i] != nums[correctIndex]) {
+                swap(nums, i, correctIndex);
+            }else {
+                i++;
             }
         }
-        for(int i = 0; i < n; i++) {
-            if(nums[i] != i + 1)
+        for(i = 0; i < n; i++) {
+            if(nums[i] != i + 1) {
                 return i + 1;
+            }
         }
         return n + 1;
     }
     public static void main(String[] args) {
-        int[] nums = {-2, -1, 0};
+        int[] nums = {1};
         System.out.println(firstMissingPositive(nums));
     }
 }
