@@ -4,33 +4,29 @@ public class QuickSort {
             System.out.print(nums[i] + " ");
         }
     }
-    public static void swap(int nums[], int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-    public static int partition(int nums[], int si, int ei) {
-        int pivot = nums[ei];
-        int i = si - 1;
-        for(int j = si; j < ei; j++) {
-            if(nums[j] <= pivot) {
-                i++;
-                swap(nums, i, j);
+    public static void sort(int[] nums, int low, int high) {
+        if(low >= high) {
+            return;
+        }
+        int s = low;
+        int e = high;
+        int m = s + (e - s) / 2;
+        int pivot = nums[m];
+        while(s <= e) {
+            while(nums[s] < pivot) {
+                s++;
+            }
+            while(nums[e] > pivot) {
+                e--;
+            }
+            if(s <= e) {
+                int temp = nums[s];
+                nums[s++] = nums[e];
+                nums[e--] = temp;
             }
         }
-        i++;
-        swap(nums, i, ei);
-        return i;
-    }
-    public static void sort(int nums[], int si, int ei) {
-        //^ Base case
-        if(si >= ei)
-            return;
-
-        //^ Recursion
-        int pivot = partition(nums, si, ei);    //* finding the pivot element and putting all smaller numbers to its left
-        sort(nums, si, pivot-1);                //* Sort left half (pivot excluded)
-        sort(nums, pivot+1, ei);                //* Sort right half (pivot excluded)
+        sort(nums, low, e);
+        sort(nums, s, high);
     }
 
     public static void main(String[] args) {

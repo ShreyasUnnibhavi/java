@@ -13,6 +13,7 @@ public class binaryToDecimal{
         return sum;
     }
     public static void main(String args[]){
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter a binary number: ");
         int binary = sc.nextInt();
