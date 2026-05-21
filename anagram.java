@@ -20,6 +20,7 @@ public class anagram{
         return true;
     }
     public static void main(String args[]){
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter string1: ");
         String str1 = sc.nextLine();
