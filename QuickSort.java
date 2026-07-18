@@ -4,29 +4,28 @@ public class QuickSort {
             System.out.print(nums[i] + " ");
         }
     }
+    public static void swap(int[] nums, int low, int high) {
+        int temp = nums[low];
+        nums[low] = nums[high];
+        nums[high] = temp;
+    }
+    public static int partition(int[] nums, int low, int high) {
+        int pivot = nums[low];
+        int i = low, j = high;
+        while(i < j) {
+            while(nums[i] <= pivot && i < high) i++;
+            while(nums[j] > pivot && j > low) j--;
+            if(i < j) swap(nums, i, j);
+        }
+        swap(nums, low, j);
+        return j;
+    }
     public static void sort(int[] nums, int low, int high) {
-        if(low >= high) {
-            return;
+        if(low < high) {
+            int pIdx = partition(nums, low, high);
+            sort(nums, low, pIdx - 1);
+            sort(nums, pIdx + 1, high);
         }
-        int s = low;
-        int e = high;
-        int m = s + (e - s) / 2;
-        int pivot = nums[m];
-        while(s <= e) {
-            while(nums[s] < pivot) {
-                s++;
-            }
-            while(nums[e] > pivot) {
-                e--;
-            }
-            if(s <= e) {
-                int temp = nums[s];
-                nums[s++] = nums[e];
-                nums[e--] = temp;
-            }
-        }
-        sort(nums, low, e);
-        sort(nums, s, high);
     }
 
     public static void main(String[] args) {
