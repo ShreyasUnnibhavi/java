@@ -9,7 +9,7 @@ public class NextPermutation {
         //^* 2. swapping the pivot element with its strictly greater element to its right
         if(i >= 0) {
             int j = nums.length-1;
-            while(j > i && nums[j] < nums[i]) {
+            while(j > i && nums[j] <= nums[i]) {
                 j--;
             }
             swap(nums, i, j);
