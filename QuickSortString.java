@@ -10,18 +10,15 @@ public class QuickSortString {
         arr[j] = temp;
     }
     public static int partition(String arr[], int si, int ei) {
-        String pivot = arr[ei];
-        int i = si - 1;
-
-        for(int j = si; j < ei; j++) {
-            if(arr[j].compareTo(pivot) < 0) {
-                i++;
-                swap(arr, i, j);
-            }
+        String pivot = arr[si];
+        int i = si, j = ei;
+        while(i < j) {
+            while(arr[i].compareTo(pivot) <= 0 && i < ei) i++;
+            while(arr[j].compareTo(pivot) > 0 && j > si) j--;
+            if(i < j) swap(arr, i, j);
         }
-        i++;
-        swap(arr, i, ei);
-        return i;
+        swap(arr, si, j);
+        return j;
     }
     public static void sort(String arr[], int si, int ei) {
         //! Base case
