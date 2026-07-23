@@ -5,17 +5,17 @@ public class TowerOfHanoi {
         //? d = destination
         //^ Base case
         if(n == 1){
-            System.out.println("transfer disk " + n + " from " + s + " to " + d);
+            System.out.println(s + " -> " + d);
             return;
         }
         //^ Recursion
         towerOfHanoi(n-1, s, d, h);
-        System.out.println("transfer disks " + n + " from " + s + " to " + d);
+        towerOfHanoi(1, s, h, d);
         towerOfHanoi(n-1, h, s, d);
 
     }
     public static void main(String[] args) {
-        int n = 4;  //Number of disks
+        int n = 3;  //Number of disks
         towerOfHanoi(n, "A", "B", "C");
     }
 }
