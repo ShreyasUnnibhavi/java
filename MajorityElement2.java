@@ -21,8 +21,8 @@ public class MajorityElement2 {
         if(leftMaj == rightMaj) return leftMaj;
 
         //! Calculate the count of majority element on the left
-        int leftMajCount = count(nums, leftMaj, 0, mid);
-        int rightMajCount = count(nums, rightMaj, mid+1, nums.length-1);
+        int leftMajCount = count(nums, leftMaj, si, mid);
+        int rightMajCount = count(nums, rightMaj, mid+1, ei);
 
         return leftMajCount > rightMajCount ? leftMaj : rightMaj;
     }
@@ -30,7 +30,7 @@ public class MajorityElement2 {
         return solve(nums, 0, nums.length-1);
     }
     public static void main(String[] args) {
-        int nums[] = {3, 4, 3};
+        int nums[] = {3, 4, 3, 1, 2, 4, 5, 7, 7, 7, 3, 3, 7};
         System.out.println(findMajorityElement(nums));
     }
 }
